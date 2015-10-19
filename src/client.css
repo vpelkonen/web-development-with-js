@@ -1,8 +1,32 @@
-$red: rgba(255, 0, 0, 1);
+$darkerBlue: rgba(20, 20, 90, 1);
+$darkBlue: rgba(40, 40, 130, 1);
 
-h1 {
-    color: $red
+body{
+    background-color: #ccc;
+    font-family: 'Lato', 'Arial', sans-serif;
+}
+body::before{
+    content:'HELLO';
+    background-color:$darkBlue;
+    color:#fff;
+    padding:1rem;
+    left:0;
+    top:0;
+    position: absolute;
+    box-shadow: 1px 1px 10px #565656;
+    border: 2px solid #eee;
+    transition: 160ms all;
+    font-weight: 700;
+    margin:1rem;
+}
+body:hover::before{
+    cursor: pointer;
+    box-shadow: 1px 3px 10px #565656;
+    background-color: $darkerBlue;
+    transform: scale(1.1);
 }
 
-
+h1 {
+    color: $darkerBlue
+}
 
