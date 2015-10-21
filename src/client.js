@@ -6,20 +6,21 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Router, Route, Link, IndexRoute } from 'react-router';
 import { VelocityTransitionGroup } from 'velocity-react';
+import { createHistory } from 'history';
+const history = createHistory();
 
 /*===[ Get components ]===*/
-import MasterApp from './components/MasterApp';
-import Content from './components/Content';
-import Greeter from './components/Greeter';
+import App from './components/App';
+import Home from './components/Home';
+import Character from './components/Character';
 import FourOhFour from './components/FourOhFour';
 
-
 const routes = (
-    <Router>
-        <Route path="/" component={MasterApp}>
-            <IndexRoute component={Content} />
-            <Route path="hello/:name" component={Greeter} />
-            <Route path="*" component={FourOhFour} />
+    <Router history={history}>
+        <Route path="/" component={App}>
+            <IndexRoute component={Home}/>
+            <Route path="character/:name" component={Character}/>
+            <Route path="*" component={FourOhFour}/>
         </Route>
     </Router>
 );

@@ -16,13 +16,54 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.get('/api/tussi', function(req, res, next) {
+app.get('/api/characterList', function(req, res, next) {
 
     res.send([
-        'Linki 1',
-        'Linki 2',
-        'Linki 3',
-        'Linki 4',
+        {
+            name: 'Name 1',
+            concept: 'polo 1',
+            description: 'desc'
+        },
+        {
+            name: 'Name 2',
+            concept: 'polo 2',
+            description: 'desc'
+        },
+        {
+            name: 'Name 3',
+            concept: 'polo 3',
+            description: 'desc'
+        },
+        {
+            name: 'Name 3',
+            concept: 'polo 3',
+            description: 'desc'
+        },
+        {
+            name: 'Name 3',
+            concept: 'polo 3',
+            description: 'desc'
+        },
+        {
+            name: 'Name 3',
+            concept: 'polo 3',
+            description: 'desc'
+        },
+        {
+            name: 'Name 3',
+            concept: 'polo 3',
+            description: 'desc'
+        },
+        {
+            name: 'Name 3',
+            concept: 'polo 3',
+            description: 'desc'
+        },
+        {
+            name: 'Name 3',
+            concept: 'polo 3',
+            description: 'desc'
+        }
     ]);
 
 });

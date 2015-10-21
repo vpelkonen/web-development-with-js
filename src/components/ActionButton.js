@@ -2,7 +2,7 @@ import React from 'react';
 
 const ActionButton = React.createClass({
     handleClick: function(e){
-        alert("Mighty manatee");
+        alert("Create (home), Edit (char), Save (char-edit).");
     },
     render: function () {
         return (
