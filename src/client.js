@@ -4,6 +4,7 @@ import '../node_modules/normalize.css/normalize.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import { Router, Route, Link, IndexRoute } from 'react-router';
 import { VelocityTransitionGroup } from 'velocity-react';
 
 function getTussit(){
@@ -16,11 +17,11 @@ const tussit = getTussit();
 tussit.then((data) => console.log(data));
 
 
-// TEXT
-const HelloText = React.createClass({
+// LINK
+const HelloLink = React.createClass({
     render: function () {
         return (
-            <p>{this.props.name}</p>
+            <Link to={`/hello/${this.props.name}`}>Hello {this.props.name}!</Link>
         );
     }
 });
@@ -90,8 +91,19 @@ const Menu = React.createClass({
     }
 });
 
+// HEADER
+const Header = React.createClass({
+    render: function(){
+        return(
+            <div className="header">
+                <HelloTitle name={this.props.title} />
+            </div>
+        );
+    }
+});
+
 // CONTENT WRAPPER
-export const Content = React.createClass({
+const Content = React.createClass({
     getInitialState: function(){
         return {
             count: 0,
@@ -120,33 +132,61 @@ export const Content = React.createClass({
         const names = this.state.names;
         return (
             <div className="content">
-                <HelloTitle name={this.props.title} />
-
+                <h2>Sisäotsikkohommat</h2>
                 {this.state.names.map((name, i) =>
-                    <HelloText key={i} name={name} />
+                    <HelloLink key={i} name={name} />
                 )}
                 <Counterizer count={this.state.count} onIncrementCounter={ this.incrementCounter }/>
                 <button onClick={ this.toggleMegaCounterizer }>Toggle MEGACOUNTERIZER visibility</button>
                 <MegaCounterizer count={this.state.count} show={this.state.show} />
             </div>
         );
+
     }
 });
 
-// MASTER WRAPPER
-const MasterApp = React.createClass({
+// Greeter
+const Greeter = React.createClass({
     render: function(){
-        return (
-            <div className="master">
-                <Menu/>
-                <Content title="Otsikkohommat" />
-            </div>
+        return(
+            <h2 className="hello">Hellooooooo {this.props.params.name}</h2>
         );
     }
 });
 
+// 404
+const FourOhFour = React.createClass({
+    render: function(){
+        return(
+            <h1>404 - Losso luck</h1>
+        );
+    }
+});
+
+// MASTER APP WRAPPER
+const MasterApp = React.createClass({
+    render: function(){
+        return (
+            <main>
+                <Menu/>
+                <Header title="Otsikkohommat"/>
+                {this.props.children}
+            </main>
+        );
+    }
+});
+
+const routes = (
+    <Router>
+        <Route path="/" component={MasterApp}>
+            <IndexRoute component={Content} />
+            <Route path="hello/:name" component={Greeter} />
+            <Route path="*" component={FourOhFour} />
+        </Route>
+    </Router>
+);
 
 ReactDOM.render(
-    <MasterApp/>,
+    routes,
     document.getElementById('app')
 );
