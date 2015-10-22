@@ -13,7 +13,8 @@ const Bar = React.createClass({
     render: function () {
         return (
             <div className="bar">
-                <Link to="/" className="logo"></Link>
+                <Link to="/" className="logo">Home</Link>
+                <p>{Parse.User.current().get('username')}</p>
                 <button onClick={this.signOut}>Sign out</button>
             </div>
         );
