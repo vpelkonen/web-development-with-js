@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ActionButton = React.createClass({
+const AddButton = React.createClass({
     handleClick: function(e){
         alert("Create (home), Edit (char), Save (char-edit).");
     },
@@ -13,4 +13,4 @@ const ActionButton = React.createClass({
     }
 });
 
-export default ActionButton;
+export default AddButton;

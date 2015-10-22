@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header';
+import EditButton from './EditButton';
 import api from '../api';
 
 const Character = React.createClass({
@@ -29,6 +30,7 @@ const Character = React.createClass({
                 <main>
                     <h3>Concept: {this.state.character.concept}</h3>
                     <h4>Description: {this.state.character.description}</h4>
+                    <EditButton/>
                 </main>
             </div>
         );

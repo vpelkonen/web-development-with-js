@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header.js';
 import CharacterList from './CharacterList';
-import ActionButton from './ActionButton';
+import AddButton from './AddButton';
 
 const Home = React.createClass({
     getInitialState: function(){
@@ -27,7 +27,7 @@ const Home = React.createClass({
                 <main>
                     <CharacterList/>
                 </main>
-                <ActionButton/>
+                <AddButton/>
             </div>
         );
 

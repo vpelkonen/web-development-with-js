@@ -15,6 +15,8 @@ import Home from './components/Home';
 import Character from './components/Character';
 import FourOhFour from './components/FourOhFour';
 
+//Parse.initialize("D7fRNQ4RFYrtxO8NAxj2zKM9dgIuvPatD1Y4OPR9", "HLaTklBEsuGIeh8WUV5Bu2L5pjgKkyNoV4GadklI");
+
 const routes = (
     <Router history={history}>
         <Route path="/" component={App}>
