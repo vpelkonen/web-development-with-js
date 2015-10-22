@@ -17,27 +17,26 @@ const CharacterList = React.createClass({
             characters: new Parse.Query('Character')
         }
     },
-    addStuff: function(){
-        ParseReact.Mutation.Create('Character', {
-            name: 'Kolopää Kalle'
-        }).dispatch();
+    handleClick: function(name, concept){
+        /*ParseReact.Mutation.Create('Character', {
+            name: name,
+            concept: concept
+        }).dispatch();*/
+        alert("YOY");
         console.log(this.data);
     },
     render: function(){
-        const TestObject = Parse.Object.extend("TestObject");
-        const testObject = new TestObject();
-        testObject.save({foo:'bar'}).then(function(object){
-            console.log("Parse key authorized!")
-        });
         return(
             <ul className="characterList">
-            {console.log(this.data)}
                 {this.data.characters.map((character, i) =>
-                    <li><Link to={`/character/${character.name}`} key={i}>
-                        <h2>{character.name}</h2>
+                    <li key={i}><Link to={`/character/${character.objectId}`}>
+                        <p>{character.name}</p>
                         <p>{character.concept}</p>
                     </Link></li>
                 )}
+                <li>
+                    <button onClick={this.handleClick}>Lisää loso</button>
+                </li>
             </ul>
         )
     }

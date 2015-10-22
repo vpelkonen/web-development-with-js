@@ -1,35 +1,33 @@
 import React from 'react';
+import Parse from 'parse';
+import ParseReact from 'parse-react';
+
+import Bar from './Bar.js';
 import Header from './Header';
 import EditButton from './EditButton';
-import api from '../api';
 
 const Character = React.createClass({
-    getInitialState: function(){
+    mixins: [ParseReact.Mixin],
+
+    observe: function(){
         return {
-            character: [{
-                name: this.props.params.name
-            }]
+            characters: new Parse.Query('Character')
         }
     },
     componentDidMount: function(){
-        api.getCharacters().then( (data) => {
-            const name = this.props.params.name; // from URL
-            const char = data.filter(function(obj){
-                return obj.name === name;
-            });
-
-            this.setState({
-                character:char[0]
-            });
-        });
+        console.log(this.props.params);
+        return {
+            characters: new Parse.Query('Character')
+        }
     },
     render: function(){
         return(
             <div className="character">
-                <Header title={this.state.character.name}/>
+                <Bar/>
+                <Header title={this.props.params.name}/>
                 <main>
-                    <h3>Concept: {this.state.character.concept}</h3>
-                    <h4>Description: {this.state.character.description}</h4>
+                    <h3>Concept: </h3>
+                    <h4>Description: </h4>
                     <EditButton/>
                 </main>
             </div>

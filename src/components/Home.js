@@ -1,29 +1,26 @@
 import React from 'react';
+import Parse from 'parse';
+import ParseReact from 'parse-react';
+import history from '../history';
+
+import Bar from './Bar.js';
 import Header from './Header.js';
 import CharacterList from './CharacterList';
 import AddButton from './AddButton';
 
 const Home = React.createClass({
-    getInitialState: function(){
-        return {
-            count: 0,
-            show: false
+    componentDidMount: function(){
+        // If no user, kick out to login
+        if(!Parse.User.current()){
+            history.replaceState(null, '/');
+            console.log('asdpihasidub')
         }
-    },
-    toggleMegaCounterizer: function() {
-        this.setState({
-          show: !this.state.show
-        });
-    },
-    incrementCounter: function(){
-        this.setState({
-            count: this.state.count +1
-        });
     },
     render: function () {
         return (
             <div className="home">
-                <Header title="Characters"/>
+                <Bar/>
+                <Header title="Home"/>
                 <main>
                     <CharacterList/>
                 </main>
