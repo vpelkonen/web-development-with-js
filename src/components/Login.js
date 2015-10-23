@@ -2,7 +2,6 @@ import React from 'react';
 import {Link} from 'react-router';
 import Parse from 'parse';
 import ParseReact from 'parse-react';
-import history from '../history';
 
 const Login = React.createClass({
     getInitialState: function(){
@@ -14,7 +13,7 @@ const Login = React.createClass({
     componentDidMount: function(){
         // If laready logged in, reroute to home
         if(Parse.User.current()){
-            history.replaceState(null, '/home');
+            this.props.history.pushState(null, '/home');
         }
     },
     userInput: function(e){
@@ -25,9 +24,10 @@ const Login = React.createClass({
     },
     login: function(){
         console.log('Attempt to login: ' + this.state.username);
+        const history = this.props.history;
         Parse.User.logIn(this.state.username, this.state.password,{
             success: function(user){
-                history.replaceState(null, '/home');
+                history.pushState(null, '/home');
             },
             error: function(user, error){
                 alert(error.message);
@@ -52,16 +52,30 @@ const Login = React.createClass({
             }
         })
     },
+    getFocus: function(e){
+        if(e.target.value === e.target.defaultValue){
+            e.target.value = '';
+        }
+    },
+    loseFocus: function(e){
+        if (e.target.value === ''){
+            e.target.value = e.target.defaultValue;
+        }
+    },
     render: function(){
         return(
             <main className="login">
                 <h1>App title</h1>
-                <form>
-                    <input type="text" name="username" defaultValue="Username" onChange={this.userInput}/>
-                    <input type="text" name="password" defaultValue="Password" onChange={this.passInput}/>
+                <h3>Mandatory descriptive subheading.</h3>
+                <form onSubmit={::this.login}>
+                    <input type="text" name="username" onFocus={this.getFocus} onBlur={this.loseFocus} defaultValue="Username" onChange={this.userInput}/>
+                    <input type="text" name="password" onFocus={this.getFocus} onBlur={this.loseFocus} defaultValue="Password" onChange={this.passInput}/>
+                    <div className="buttonGroup">
+                        <button type="submit" className="signIn" onClick={this.login}>Sign in</button>
+                        <button type="button" className="register" onClick={this.signup}>Register</button>
+                    </div>
                 </form>
-                <button onClick={this.login}>Login</button>
-                <button onClick={this.signup}>Signup</button>
+                <p className="owner">by Ville Pelkonen</p>
             </main>
         )
     }

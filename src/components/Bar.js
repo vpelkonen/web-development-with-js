@@ -7,15 +7,15 @@ import history from '../history';
 const Bar = React.createClass({
     signOut: function(e){
         Parse.User.logOut();
-        history.replaceState(null, '/');
+        history.pushState(null, '/');
         console.log(Parse.User.current());
     },
     render: function () {
         return (
             <div className="bar">
-                <Link to="/" className="logo">Home</Link>
-                <p>{Parse.User.current().get('username')}</p>
+                <Link to="/" className="logo"><h2>App title</h2></Link>
                 <button onClick={this.signOut}>Sign out</button>
+                <p>{Parse.User.current().get('username')}</p>
             </div>
         );
     }

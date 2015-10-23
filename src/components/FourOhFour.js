@@ -1,15 +1,15 @@
 import React from 'react';
 import Parse from 'parse';
 import ParseReact from 'parse-react';
-import history from '../history';
 
 const FourOhFour = React.createClass({
     componentDidMount: function(){
         // If user, reroute to login; else go home
+        //this.props.history
         if(Parse.User.current()){
-            history.replaceState(null, '/');
+            history.pushState(null, '/');
         } else{
-            history.replaceState(null, '/home');
+            history.pushState(null, '/home');
         }
     },
     render: function(){

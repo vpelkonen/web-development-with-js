@@ -12,16 +12,16 @@ const Home = React.createClass({
     componentDidMount: function(){
         // If no user, kick out to login
         if(!Parse.User.current()){
-            history.replaceState(null, '/');
+            history.pushState(null, '/');
             console.log('asdpihasidub')
         }
     },
     render: function () {
         return (
-            <div className="home">
+            <div>
                 <Bar/>
                 <Header title="Home"/>
-                <main>
+                <main className="home">
                     <CharacterList/>
                 </main>
                 <AddButton/>

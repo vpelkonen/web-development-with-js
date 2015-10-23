@@ -1,5 +1,5 @@
-import './client.css';
 import '../node_modules/normalize.css/normalize.css';
+import './client.css';
 import history from './history';
 
 import React from 'react';

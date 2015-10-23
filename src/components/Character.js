@@ -11,25 +11,23 @@ const Character = React.createClass({
 
     observe: function(){
         return {
-            characters: new Parse.Query('Character')
+            user: ParseReact.currentUser
         }
     },
-    componentDidMount: function(){
-        console.log(this.props.params);
-        return {
-            characters: new Parse.Query('Character')
-        }
+    deleteCharacter: function(){
+        alert('Are you sure? This caharacter wll be deleted FOREVER.');
     },
     render: function(){
         return(
-            <div className="character">
+            <div>
                 <Bar/>
                 <Header title={this.props.params.name}/>
-                <main>
+                <main className="character">
                     <h3>Concept: </h3>
                     <h4>Description: </h4>
-                    <EditButton/>
+                    <button className="deleteButton" onClick={this.deleteCharacter}>DELETE</button>
                 </main>
+                <EditButton/>
             </div>
         );
     }
