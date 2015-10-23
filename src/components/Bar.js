@@ -8,12 +8,11 @@ const Bar = React.createClass({
     signOut: function(e){
         Parse.User.logOut();
         history.pushState(null, '/');
-        console.log(Parse.User.current());
     },
     render: function () {
         return (
             <div className="bar">
-                <Link to="/" className="logo"><h2>App title</h2></Link>
+                <Link to="/" className="logo"><h2>Charactr</h2></Link>
                 <button onClick={this.signOut}>Sign out</button>
                 <p>{Parse.User.current().get('username')}</p>
             </div>

@@ -24,7 +24,7 @@ const routes = (
         <Route path="/" component={App}>
             <IndexRoute component={Login}/>
             <Route path="home" component={Home}/>
-            <Route path="character/:name" component={Character}/>
+            <Route path="character/:id" component={Character}/>
             <Route path="*" component={FourOhFour}/>
         </Route>
     </Router>

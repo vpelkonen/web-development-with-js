@@ -11,11 +11,3 @@ const App = React.createClass({
 });
 
 export default App;
-
-                /*
-                {this.props.children && React.cloneElement(
-                    this.props.children,{
-                        currentUser: this.state.currentUser,
-                        setUser: this.setUser
-                    }
-                )}*/

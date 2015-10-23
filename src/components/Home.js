@@ -13,14 +13,13 @@ const Home = React.createClass({
         // If no user, kick out to login
         if(!Parse.User.current()){
             history.pushState(null, '/');
-            console.log('asdpihasidub')
         }
     },
     render: function () {
         return (
             <div>
                 <Bar/>
-                <Header title="Home"/>
+                <Header title="Characters"/>
                 <main className="home">
                     <CharacterList/>
                 </main>

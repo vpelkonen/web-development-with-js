@@ -22,8 +22,8 @@ const Login = React.createClass({
     passInput: function(e){
         this.setState({password: e.target.value});
     },
-    login: function(){
-        console.log('Attempt to login: ' + this.state.username);
+    login: function(e){
+        e.preventDefault();
         const history = this.props.history;
         Parse.User.logIn(this.state.username, this.state.password,{
             success: function(user){
@@ -35,17 +35,25 @@ const Login = React.createClass({
         });
     },
     signup: function(){
-        console.log('Attempt to sign up: ' + this.state.username);
         let user = new Parse.User();
-        const doAlsoLogin = this.login; // GRGLRGLLRL: set login function to a local variable to use it within Parse object
+        const history = this.props.history;
         user.set({
             'username':this.state.username,
             'password':this.state.password
         });
+        const nameState = this.state.username;
+        const pwdState = this.state.password;
         user.signUp(null,{
             success: function(user){
-                alert('Succesfully signed up!');
-                doAlsoLogin();
+                // IDENTICAL TO SIGN IN - clashes with form submit prevention; hacks on hacks
+                Parse.User.logIn(nameState, pwdState,{
+                success: function(user){
+                    history.pushState(null, '/home');
+                },
+                error: function(user, error){
+                    alert(error.message);
+                }
+            });
             },
             error: function(user, error){
                 alert(error.message);
@@ -65,9 +73,9 @@ const Login = React.createClass({
     render: function(){
         return(
             <main className="login">
-                <h1>App title</h1>
-                <h3>Mandatory descriptive subheading.</h3>
-                <form onSubmit={::this.login}>
+                <h1>Charactr</h1>
+                <h3>Your other life awaits.</h3>
+                <form onSubmit={this.login}>
                     <input type="text" name="username" onFocus={this.getFocus} onBlur={this.loseFocus} defaultValue="Username" onChange={this.userInput}/>
                     <input type="text" name="password" onFocus={this.getFocus} onBlur={this.loseFocus} defaultValue="Password" onChange={this.passInput}/>
                     <div className="buttonGroup">

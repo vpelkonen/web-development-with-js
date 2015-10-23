@@ -9,22 +9,26 @@ const CharacterList = React.createClass({
 
     observe: function(){
         const user = Parse.User.current();
+
         return {
-            characters: new Parse.Query('Character')
+            characters: new Parse.Query('Character').equalTo('user',user).ascending('createdAt')
         }
     },
     render: function(){
+        const { characters } = this.data;
+        const emptyListMessage = characters.length < 1 ? <li className="emptyListMessage">Looks like you haven't created a character yet.</li> : null;
+
         return(
             <ul className="characterList">
-                {this.data.characters.map((character, i) =>
-                    <VelocityTransitionGroup enter={{animation: "fadeIn"}} leave={{animation: "fadeOut"}}>
-                        <li key={i}><Link to={`/character/${character.objectId}`}>
+                {this.data.characters.map(character =>
+                    <VelocityTransitionGroup key={character.objectId} enter={{animation: "fadeIn"}} leave={{animation: "fadeOut"}}>
+                        <li className="card"><Link to={`/character/${character.objectId}`}>
                             <h3>{character.name}</h3>
                             <p>{character.concept}</p>
                         </Link></li>
                     </VelocityTransitionGroup>
                 )}
-                <li><Link to="/">Create new...</Link></li>
+                {emptyListMessage}
             </ul>
         )
     }

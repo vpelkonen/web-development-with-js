@@ -6,6 +6,7 @@ import history from '../history';
 const AddButton = React.createClass({
     handleClick: function(e){
         ParseReact.Mutation.Create('Character', {
+            user: Parse.User.current(),
             name: 'New entry',
             concept: null,
             description: null,
@@ -15,8 +16,6 @@ const AddButton = React.createClass({
                 ethic: null
             }
         }).dispatch().then(char => {
-            const user = Parse.User.current();
-            //ParseReact.Mutation.AddRelation(user,'characters',char)
             history.pushState(null,'/character/'+char.objectId);
         });
     },

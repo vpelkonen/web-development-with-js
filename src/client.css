@@ -20,11 +20,14 @@ button::-moz-focus-inner {
 }
 
 /*===================[ REAL STYLES: DESKTOP ]===================*/
-$orange: rgba(240, 140, 20, 1);
-$blue: rgba(0, 100, 180, 1);
-$shadowGray: rgba(20,20,20,1);
-$bg: rgba(80,80,90,1);
-$highlight: rgba(40,140,240,1);
+$shadowGray: rgba(5,5,5,1);
+$darkGray: rgba(20,30,40,1);
+$lightGray: rgba(60,70,85,1);
+$almostWhite: rgba(245,245,245,1);
+$bg: rgba(60,50,50,1);
+
+$mainColor: rgba(50,140,230,1);
+$positive: rgba(20,180,80,1);
 $warning: rgba(240,60,70,1);
 
 /* GENERAL */
@@ -54,17 +57,18 @@ button:not(.actionButton) {
     padding: 10px 25px;
     margin:5px;
     transition: 200ms all;
-    background-color: $highlight;
+    background-color: $mainColor;
     color:rgba(255,255,255,1);
 
     &:hover {
-        color: $highlight;
-        background-color:rgba(255,255,255,1);
+        color: $mainColor;
+        background-color:$almostWhite;
     }
 }
 
 main{
     padding:20px;
+    background-color:$bg;
 }
 
 
@@ -80,7 +84,6 @@ main.login{
         margin:10px auto;
         border-radius:20px;
         min-width:60%;
-        box-shadow: -1px -1px 2px #000 inset
     }
     h1{
         margin:5rem 0 .5rem 0;
@@ -98,6 +101,15 @@ main.login{
     .buttonGroup{
         text-align: center;
         margin: 0 auto;
+
+        .register{
+            background-color: $positive;
+
+            &:hover{
+                color:$positive;
+                background-color:$almostWhite;
+            };
+        }
     }
     .owner{
         position: absolute;
@@ -106,7 +118,7 @@ main.login{
         margin: 0;
         left:20px;
         font-size:0.9rem;
-        color:rgba(200,200,200,1);
+        color:$almostWhite;
     }
 }
 
@@ -114,8 +126,6 @@ main.login{
     z-index: -1;
     position: relative;
     background: url('./header.jpg');
-    background-attachment: fixed;
-    background-position: 0;
     height:200px;
     padding:20px;
 
@@ -123,13 +133,13 @@ main.login{
         position: absolute;
         margin:0;
         bottom: 10px;
-        text-shadow: 1px 1px 3px rgba(20,20,20,1);
+        text-shadow: 1px 1px 3px $shadowGray;
     }
 }
 
 /* TASK BAR */
 .bar {
-    background-color:$blue;
+    background-color:$darkGray;
     height: 50px;
     width: 100%;
     position: fixed;
@@ -152,25 +162,21 @@ main.login{
         float:right;
     }
     p{
-        color:rgba(255,255,255,1);
+        color:$almostWhite;
         margin:15px 10px 15px 0;
         float:right;
     }
 }
 
 /* HOME VIEW  */
-main.home{
-    background-color: rgba(200,200,200,1);
-}
 .characterList{
     list-style:none;
     padding:0;
 
-    li{
+    .card{
         a{
             text-decoration: none;
-            color:$blue;
-            background-color:rgba(255,255,255,1);
+            background-color:$lightGray;
             box-shadow: 1px 1px 2px $shadowGray;
             padding:20px;
             display: block;
@@ -180,23 +186,26 @@ main.home{
             h3{
                 font-family:'Roboto', 'Arial', sans-serif;
                 margin:0;
-                color:$blue;
+                color:$mainColor;
             }
 
             p{
                 margin:0;
-                color:rgba(130,130,130,1);
+                color:$almostWhite;
                 font-size:.9rem;
             }
 
             &:hover{
-                background-color:$blue;
-                color:#fff;
-                *{
-                    color:rgba(255,255,255,1);
-                }
+                background-color:$almostWhite;
             }
         }
+    }
+    .emptyListMessage{
+        margin-top:5rem;
+        color:rgba(215,215,215,1);
+        font-size: 1.3rem;
+        text-align: center;
+        font-family: 'Josefin sans', 'Arial',sans-serif;
     }
 }
 
@@ -204,7 +213,7 @@ main.home{
     border-radius: 35px;
     width: 70px;
     height: 70px;
-    background-color: $blue;
+    background-color: $mainColor;
     box-shadow: 1px 1px 3px $shadowGray;
     position: fixed;
     bottom:30px;
@@ -226,7 +235,7 @@ main.home{
 
         &:hover{
             color:$warning;
-            background-color: rgba(255,255,255,1);
+            background-color: $almostWhite;
         }
     }
 }
